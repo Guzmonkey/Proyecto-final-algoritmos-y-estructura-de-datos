@@ -1,33 +1,22 @@
 package uabc.topologicalsort;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
-public class NodoGrafo<T>{
-    private T info;
-    private final ArrayList<NodoGrafo<T>> ant = new ArrayList<>();
-    private final ArrayList<NodoGrafo<T>> sig = new ArrayList<>();
+public class NodoGrafo<T> {
+    private T info; // Información del nodo
 
-    public NodoGrafo(T info){
+    // ArrayList que almacena los nodos siguientes y anteriores
+    private ArrayList<NodoGrafo<T>> nodosSiguientes = new ArrayList<>();
+
+    // Grado que se toma en cuenta en el ordenamiento topológico
+    private int gradoDeEntrada = 0;
+
+    // Constructor del nodo
+    public NodoGrafo(T info) {
         this.info = info;
     }
-    
-    public ArrayList<NodoGrafo<T>> getSig() {
-        return sig;
-    }
 
-    public void addSig(NodoGrafo<T> sig) {
-        this.sig.add(sig);
-    }
-
-    public ArrayList<NodoGrafo<T>> getAnt() {
-        return ant;
-    }
-
-    public void setAnt(NodoGrafo<T> ant) {
-        this.ant.add(ant);
-    }
-
+    // Getters y setters de info
     public T getInfo() {
         return info;
     }
@@ -36,14 +25,23 @@ public class NodoGrafo<T>{
         this.info = info;
     }
 
-    @Override
-    public String toString() {
-        return "" + info;
+    // Getters y setters de gradoDeEntrada
+    public int getGradoDeEntrada() {
+        return gradoDeEntrada;
     }
-    
-    @Override
-    public boolean equals(Object obj) {
-        NodoGrafo<?> nodo = (NodoGrafo<?>) obj;
-        return Objects.equals(info, nodo.info);
+
+    public void setGradoDeEntrada(int gradoDeEntrada) {
+        this.gradoDeEntrada = gradoDeEntrada;
+    }
+
+    // Método para agregar un nuevo nodo a la lista de nodos siguientes
+    public void agregarNodo(NodoGrafo<T> nodo) {
+        nodosSiguientes.add(nodo);
+        gradoDeEntrada++;
+    }
+
+    // Getter de la lista de nodos siguientes
+    public ArrayList<NodoGrafo<T>> getNodosSiguientes() {
+        return nodosSiguientes;
     }
 }
