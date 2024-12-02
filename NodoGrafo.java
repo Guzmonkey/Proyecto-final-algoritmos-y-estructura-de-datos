@@ -1,29 +1,31 @@
+package uabc.topologicalsort;
+
 import java.util.ArrayList;
+import java.util.Objects;
+
 public class NodoGrafo<T>{
     private T info;
-    private ArrayList<T> ant;
-    private ArrayList<T> sig;
+    private final ArrayList<NodoGrafo<T>> ant = new ArrayList<>();
+    private final ArrayList<NodoGrafo<T>> sig = new ArrayList<>();
 
-    public NodoGrafo(){}
-
-    public NodoGrafo(T info, ArrayList ant, ArrayList sig){
-
+    public NodoGrafo(T info){
+        this.info = info;
     }
     
-    public ArrayList<T> getSig() {
+    public ArrayList<NodoGrafo<T>> getSig() {
         return sig;
     }
 
-    public void setSig(ArrayList<T> sig) {
-        this.sig = sig;
+    public void addSig(NodoGrafo<T> sig) {
+        this.sig.add(sig);
     }
 
-    public ArrayList<T> getAnt() {
+    public ArrayList<NodoGrafo<T>> getAnt() {
         return ant;
     }
 
-    public void setAnt(ArrayList<T> ant) {
-        this.ant = ant;
+    public void setAnt(NodoGrafo<T> ant) {
+        this.ant.add(ant);
     }
 
     public T getInfo() {
@@ -36,6 +38,12 @@ public class NodoGrafo<T>{
 
     @Override
     public String toString() {
-        return "" + info + "" + ant + "" + sig;
+        return "" + info;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        NodoGrafo<?> nodo = (NodoGrafo<?>) obj;
+        return Objects.equals(info, nodo.info);
     }
 }
