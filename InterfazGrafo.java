@@ -13,6 +13,7 @@ import java.util.Map;
 public class InterfazGrafo extends JFrame {
     // Declaracion de atributos
     private GrafoDirigidoAciclico<Integer> grafo;
+    private GrafoDirigidoAciclico<Character> grafo2;
     private JTextArea textoGrafo;
     private mxGraph jGraph;
     private JPanel panelGrafo;
