@@ -1,7 +1,5 @@
-package uabc.topologicalsort;
-
+package org.Proyecto;
 import java.util.ArrayList;
-
 public class NodoGrafo<T> {
     private T info; // Información del nodo
 
